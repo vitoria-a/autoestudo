@@ -1,0 +1,35 @@
+{
+  "name": "vuetify-2-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@mdi/js": "^6.6.96",
+    "axios": "^0.19.2",
+    "vue": "^2.6.14",
+    "vue-moment": "^4.1.0",
+    "vue-router": "^3.5.3",
+    "vuetify": "^2.6.4",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@mdi/font": "^4.9.95",
+    "@vue/cli-plugin-router": "^4.5.16",
+    "@vue/cli-plugin-vuex": "^4.5.16",
+    "@vue/cli-service": "^4.5.16",
+    "sass": "^1.49.9",
+    "sass-loader": "^8.0.0",
+    "stylus": "^0.54.8",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-vuetify": "^2.4.8",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.3"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
