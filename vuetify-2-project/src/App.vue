@@ -12,6 +12,9 @@
                 <v-toolbar-items class="ml-3">
                     <v-btn to="/cursos" text>Cursos</v-btn>
                 </v-toolbar-items>
+                <v-toolbar-items class="ml-3">
+                    <v-btn to="/matricula" text>Matricula</v-btn>
+                </v-toolbar-items>
               <v-spacer></v-spacer>
 
               <span>Olá, {{ nome }} </span>

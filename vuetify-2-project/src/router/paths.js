@@ -4,7 +4,8 @@ import Home from '../views/Home'
 import SingUp from '../views/SingUp'
 import Curso from '../views/Cursos'
 import AddCourse from '../views/AddCourse'
-import Edit from '../views/EditUser.vue'
+import Matricula from '../views/Matricula'
+import AddMatricula from '../views/AddMatricula'
 
 export default [
 
@@ -22,11 +23,6 @@ export default [
         component: SingUp
     },
     {
-        path: "/edit/:id",
-        name: "Edit",
-        component: Edit
-    },
-    {
         path: "/cursos",
         name: 'Cursos',
         component: Curso
@@ -35,6 +31,16 @@ export default [
         path: "/registerCourse",
         name: 'AddCouse',
         component: AddCourse
+    },
+    {
+        path:"/matricula",
+        name: 'Matricula',
+        component: Matricula
+    },
+    {
+        path: "/registerMatricula",
+        name: 'AddMatricula',
+        component: AddMatricula
     },
     {
         path: '/login',

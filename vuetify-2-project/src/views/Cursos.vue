@@ -1,5 +1,5 @@
 <template>
-  <div align="right">
+  <div align="right" v-if="editDisabled">
     <v-card-widget enableActions :title="'Cursos'">
       <div slot="widget-header-action"></div>
 
@@ -35,6 +35,7 @@
           </v-col>
         </v-row>
       </div>
+      <v-else :curso="selectedCurso" :editDisabled.sync="editDisabled" />
     </v-card-widget>
 
     <br />
@@ -53,15 +54,19 @@ import { RepositoryFactory } from "@/repositories/RepositoryFactory";
 import { mdiAccount } from "@mdi/js";
 const cursoRepo = RepositoryFactory.get("curso");
 import axios from "axios";
+import EditCurso from './EditCurso.vue'
 
 export default {
   name: "curso",
   components: {
     VCardWidget,
+    EditCurso,
   },
 
   data: () => ({
     svgPath: mdiAccount,
+    editDisabled: true,
+    selectedCurso: {},
     headers: [
       {
         text: "Nome",
@@ -108,9 +113,10 @@ export default {
       await axios.delete("/cursos/" + item);
       this.getCursos();
     },
-    editItem(item) {
-      this.$router.push("cursos/edit/" + item);
-    },
+    editItem: function (item) {
+      this.editDisabled = false;
+      this.selectedCurso = item;
+    }
   },
 };
 </script>

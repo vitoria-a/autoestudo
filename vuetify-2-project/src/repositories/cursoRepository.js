@@ -10,7 +10,9 @@ export default {
     getAll() {
       return Repository.get(`${resource}`)
     },
-    
+    getId(id) {
+      return Repository.get(`/cursos/${id}`)
+    },
     update(id, data) {
       return http.put(`/cursos/${id}`, data);
     }

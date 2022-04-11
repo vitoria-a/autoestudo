@@ -69,11 +69,6 @@ export default {
     selectedUser: {},
     headers: [
       {
-        text: "ID",
-        aling: "left",
-        value: "id"
-      },
-      {
         text: "Nome",
         align: "left",
         value: "nome",

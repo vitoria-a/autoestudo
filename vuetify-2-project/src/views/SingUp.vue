@@ -84,7 +84,7 @@
                             this.usuarios.email = '';
                             this.usuarios.password = '';
                         })
-                    this.$router.push('/')
+                    this.$router.push('/');
                 }           
                 
             }

@@ -10,6 +10,4 @@ public interface CursoRepository extends JpaRepository <Curso, Integer> {
 
 	List<Curso> findAll();
 
-	Curso save(Curso curso);
-
 }
