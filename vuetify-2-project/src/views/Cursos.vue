@@ -17,7 +17,7 @@
                   width="30"
                   height="30"
                   color="success"
-                  @click="editItem(item.id)"
+                  @click="editItem(item)"
                 >
                   <v-icon center> mdi-pencil </v-icon>
                 </v-btn>
@@ -40,11 +40,19 @@
 
     <br />
     <div>
-      <v-btn fab dark color="#2d5269" width="50" height="50" to="/registerCourse">
+      <v-btn
+        fab
+        dark
+        color="#2d5269"
+        width="50"
+        height="50"
+        to="/registerCourse"
+      >
         <v-icon dark>add</v-icon>
       </v-btn>
     </div>
   </div>
+  <edit-curso v-else :curso="selectedCurso" :editDisabled.sync="editDisabled" />
 </template>
 
 <script>
@@ -52,9 +60,9 @@
 import VCardWidget from "@/components/VWidget";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
 import { mdiAccount } from "@mdi/js";
-const cursoRepo = RepositoryFactory.get("curso");
 import axios from "axios";
-import EditCurso from './EditCurso.vue'
+import EditCurso from "./EditCurso.vue";
+const cursoRepo = RepositoryFactory.get("curso");
 
 export default {
   name: "curso",
@@ -92,22 +100,16 @@ export default {
     cursos: [],
   }),
 
-  created() {
-    cursoRepo
-      .getAll()
-      .then((res) => {
-        this.cursos = res.data;
-      })
-      .catch(console.error);
+  async created() {
+    const { data } = await cursoRepo.getAll();
+    this.cursos = data;
   },
 
   computed: {},
 
   methods: {
     getCursos: function () {
-      axios
-        .get("/cursos")
-        .then((response) => (this.cursos = response.data));
+      axios.get("/cursos").then((response) => (this.cursos = response.data));
     },
     deleteItem: async function (item) {
       await axios.delete("/cursos/" + item);
@@ -116,7 +118,7 @@ export default {
     editItem: function (item) {
       this.editDisabled = false;
       this.selectedCurso = item;
-    }
+    },
   },
 };
 </script>

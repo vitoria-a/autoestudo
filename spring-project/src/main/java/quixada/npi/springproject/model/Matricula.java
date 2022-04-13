@@ -1,13 +1,22 @@
 package quixada.npi.springproject.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Matricula {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	private Integer id_user;
-	
+
 	private Integer id_curso;
-	
+
 	public Matricula() {
 		super();
 	}
@@ -26,11 +35,11 @@ public class Matricula {
 		this.id_user = id_user;
 	}
 
-	public Integer getId_cursoInteger() {
+	public Integer getId_curso() {
 		return id_curso;
 	}
 
-	public void setId_cursoInteger(Integer id_curso) {
+	public void setId_curso(Integer id_curso) {
 		this.id_curso = id_curso;
 	}
 }

@@ -13,4 +13,6 @@ public interface MatriculaService {
 
 	Matricula save(Matricula matricula);
 
+	void deleteMatricula(Integer id);
+
 }

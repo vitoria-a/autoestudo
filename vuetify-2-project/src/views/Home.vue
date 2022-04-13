@@ -116,7 +116,7 @@ export default {
     editItem: function (item) {
       this.editDisabled = false;
       this.selectedUser = item;
-    }
-  }
+    },
+  },
 };
 </script>

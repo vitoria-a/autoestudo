@@ -1,6 +1,6 @@
 <template>
   <div align="right">
-    <v-card-widget enableActions :title="'Matricula'">
+    <v-card-widget enableActions title="Matricula">
       <div slot="widget-header-action"></div>
 
       <div slot="widget-content">
@@ -12,6 +12,16 @@
               :items-per-page="4"
               class="elevation-1"
             >
+              <template v-slot:[`item.acoes`]="{ item }">
+                <v-btn
+                  width="30"
+                  height="30"
+                  color="error"
+                  @click="deleteItem(item.id)"
+                >
+                  <v-icon center> mdi-delete </v-icon>
+                </v-btn>
+              </template>
             </v-data-table>
           </v-col>
         </v-row>
@@ -20,7 +30,14 @@
 
     <br />
     <div>
-      <v-btn fab dark color="#2d5269" width="50" height="50" to="/registerMatricula">
+      <v-btn
+        fab
+        dark
+        color="#2d5269"
+        width="50"
+        height="50"
+        to="/registerMatricula"
+      >
         <v-icon dark>add</v-icon>
       </v-btn>
     </div>
@@ -28,39 +45,58 @@
 </template>
 
 <script>
-
-
+import VCardWidget from "@/components/VWidget";
 import { RepositoryFactory } from "@/repositories/RepositoryFactory";
-const usuarioRepo = RepositoryFactory.get("usuario");
-const cursoRepo = RepositoryFactory.get("curso");
+import axios from "axios";
 const matriculaRepo = RepositoryFactory.get("matricula");
 
 export default {
-    data: () => ({
-      headers: [
-        {
-          text: "ID Aluno",
-          align: "left",
-          value: "id_user"
-        },
-        {
-          text: "ID Curso",
-          align: "left",
-          value: "id_curso"
-        }
-      ],
-      matriculas: []
+  name: "matricula",
+  components: {
+    VCardWidget,
+  },
+  data: () => ({
+    headers: [
+      {
+        text: "ID Matricula",
+        align: "left",
+        value: "id",
+      },
+      {
+        text: "ID Aluno",
+        align: "left",
+        value: "id_user",
+      },
+      {
+        text: "ID Curso",
+        align: "left",
+        value: "id_curso",
+      },
+      {
+        text: "Excluir",
+        aling: "left",
+        value: "acoes",
+      },
+    ],
+    matriculas: [],
+  }),
 
-    }),
+  async created() {
+    const { data } = await matriculaRepo.getAll();
+    this.matriculas = data;
+  },
 
-    created() {
-        matriculaRepo
-        .getAll()
-        .then((res) => {
-            this.matriculas = res.data;
-        })
-        .catch(console.error);
-
+  methods: {
+    getMatriculas: function () {
+      axios
+        .get("/matricula")
+        .then((response) => (this.matriculas = response.data));
     },
+    deleteItem: async function (item) {
+      console.log(item);
+      await axios.delete("/matricula/" + item);
+      this.getMatriculas();
+    },
+  },
 };
 </script>
